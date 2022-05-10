@@ -79,7 +79,6 @@ const font = fontLoader.load('/fonts/helvetiker_regular.typeface.json', (font) =
 
     gui.add(camera.position, 'z').min(1).max(5).step(0.01);
 
-    gui.addColor(text, "text", 'pink')
     camera.lookAt(text.position)
 })
 
