@@ -20,7 +20,7 @@ const scene = new THREE.Scene()
 
 // Axes Helper
 const axesHelper = new THREE.AxesHelper()
-scene.add(axesHelper)
+// scene.add(axesHelper)    
 
 /**
  * Textures
@@ -30,8 +30,9 @@ const matcapTexture = textureLoader.load('/textures/matcaps/1.png')
 
 // Fonts
 const fontLoader = new FontLoader();
+const geometryTextObj = {text: "Hello World"};
 const font = fontLoader.load('/fonts/helvetiker_regular.typeface.json', (font) => {
-    const textGeometry = new TextGeometry("Hello World!", {
+    const textGeometry = new TextGeometry(geometryTextObj.text, {
         font,
         size: 0.3,
         height: 0.2,
@@ -78,6 +79,23 @@ const font = fontLoader.load('/fonts/helvetiker_regular.typeface.json', (font) =
     gsap.to(text.position, { duration: 5, delay: 1 })
 
     gui.add(camera.position, 'z').min(1).max(5).step(0.01);
+    gui.add( geometryTextObj, "text" ).onChange((value) => {
+        text.geometry.dispose()
+
+        text.geometry = new TextGeometry(value, {
+            font,
+            size: 0.3,
+            height: 0.2,
+            curveSegments: 6,
+            bevelEnabled: true,
+            bevelThickness: 0.03,
+            bevelSize: 0.02,
+            bevelOffset: 0,
+            bevelSegments: 4
+        });
+
+        text.geometry.center()
+    })
 
     camera.lookAt(text.position)
 })
