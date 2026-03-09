@@ -27,7 +27,7 @@ Users can experiment with **camera FOV and Z-axis positioning** to see how persp
   
 ## Installation
 ```bash
-git clone https://github.com/yourusername/3d-text-playground.git
+git clone (https://github.com/leonyangela/3d-text.git)
 cd 3d-text-playground
 npm install
 npm run dev```
